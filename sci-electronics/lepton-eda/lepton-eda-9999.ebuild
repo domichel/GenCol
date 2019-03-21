@@ -16,7 +16,8 @@ IUSE="debug doc nls stroke contrib"
 REQUIRED_USE="${PYTHON_REQUIRED_USE}
 	contrib? ( $(python_gen_useflags 'python2*') )"
 
-CDEPEND="contrib? ( ${PYTHON_DEPS} )
+CDEPEND="contrib? ( ${PYTHON_DEPS}
+		!!sci-electronics/geda )
 	dev-libs/glib:2
 	x11-libs/gtk+:2
 	x11-libs/pango
