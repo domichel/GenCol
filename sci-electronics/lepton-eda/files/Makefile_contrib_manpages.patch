@@ -1,0 +1,56 @@
+diff -u -N -r lepton-eda-9999-orig/contrib/gmk_sym/Makefile.am lepton-eda-9999/contrib/gmk_sym/Makefile.am
+--- lepton-eda-9999-orig/contrib/gmk_sym/Makefile.am	2019-03-20 23:58:42.616288326 +0100
++++ lepton-eda-9999/contrib/gmk_sym/Makefile.am	2019-03-21 00:04:19.117302840 +0100
+@@ -3,6 +3,7 @@
+ noinst_PROGRAMS = gmk_sym convert_sym
+ 
+ dist_noinst_MANS = convert_sym.1 gmk_sym.1
++dist_man_MANS = convert_sym.1 gmk_sym.1
+ 
+ EXTRA_DIST = convert_sym.1.in convert_sym.1 gmk_sym.1.in gmk_sym.1 README
+ 
+diff -u -N -r lepton-eda-9999-orig/contrib/olib/Makefile.am lepton-eda-9999/contrib/olib/Makefile.am
+--- lepton-eda-9999-orig/contrib/olib/Makefile.am	2019-03-20 23:58:42.621288326 +0100
++++ lepton-eda-9999/contrib/olib/Makefile.am	2019-03-21 00:06:42.093309006 +0100
+@@ -6,6 +6,7 @@
+ olib_LDFLAGS = -lm
+ 
+ dist_noinst_MANS = olib.1
++dist_man_MANS = olib.1
+ 
+ EXTRA_DIST = olib.1 olib.1.in README.olib
+ 
+diff -u -N -r lepton-eda-9999-orig/contrib/sarlacc_schem/Makefile.am lepton-eda-9999/contrib/sarlacc_schem/Makefile.am
+--- lepton-eda-9999-orig/contrib/sarlacc_schem/Makefile.am	2019-03-20 23:58:42.623288327 +0100
++++ lepton-eda-9999/contrib/sarlacc_schem/Makefile.am	2019-03-21 00:07:50.005311935 +0100
+@@ -11,6 +11,7 @@
+ AM_CPPFLAGS = -I$(top_srcdir)/liblepton/include
+ 
+ dist_noinst_MANS = sarlacc_schem.1
++dist_man_MANS = sarlacc_schem.1
+ 
+ EXTRA_DIST = sarlacc_schem.1.in sarlacc_schem.1
+ 
+diff -u -N -r lepton-eda-9999-orig/contrib/scripts/Makefile.am lepton-eda-9999/contrib/scripts/Makefile.am
+--- lepton-eda-9999-orig/contrib/scripts/Makefile.am	2019-03-20 23:58:42.625288327 +0100
++++ lepton-eda-9999/contrib/scripts/Makefile.am	2019-03-21 00:09:11.677315458 +0100
+@@ -5,6 +5,8 @@
+ 
+ dist_noinst_MANS = gnet_hier_verilog.1 pads_backannotate.1 \
+ 	sarlacc_sym.1 sw2asc.1
++dist_man_MANS = gnet_hier_verilog.1 pads_backannotate.1 \
++	sarlacc_sym.1 sw2asc.1
+ 
+ EXTRA_DIST = gnet_hier_verilog.sh sarlacc_sym pads_backannotate \
+ 	sw2asc.in mk_char_tab.pl  gnet_hier_verilog.1.in \
+diff -u -N -r lepton-eda-9999-orig/contrib/smash_megafile/Makefile.am lepton-eda-9999/contrib/smash_megafile/Makefile.am
+--- lepton-eda-9999-orig/contrib/smash_megafile/Makefile.am	2019-03-20 23:58:42.631288327 +0100
++++ lepton-eda-9999/contrib/smash_megafile/Makefile.am	2019-03-21 00:10:21.910318487 +0100
+@@ -3,6 +3,7 @@
+ smash_megafile_SOURCES = smash_megafile.c
+ 
+ dist_noinst_MANS = smash_megafile.1
++dist_man_MANS = smash_megafile.1
+ 
+ EXTRA_DIST = smash_megafile.1.in smash_megafile.1
+ 
