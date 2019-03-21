@@ -63,4 +63,4 @@ Already up to date.
 ...snip...
 * Overlay "GenCool" could not be found in the remote lists.
 ``` 
-You can ignore that warning, it's normal because GenCool is not in laman's remote list of overlays. 
+You can ignore that warning, it's normal because GenCool is not in layman's remote list of overlays. 
