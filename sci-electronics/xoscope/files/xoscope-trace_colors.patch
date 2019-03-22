@@ -1,0 +1,24 @@
+--- xoscope-9999/xoscope.rc.orig	2018-06-20 12:42:50.130244916 +0200
++++ xoscope-9999/xoscope.rc	2018-06-21 01:22:46.948045752 +0200
+@@ -35,15 +35,15 @@
+ widget "*.period_label" style "green"
+ widget "*.min_max_label" style "green"
+ 
+-widget "*.Ch1*" style "green"
++widget "*.Ch1*" style "blue"
+ #widget "*.Ch1*" style "red_bg"
+-widget "*.Ch2*" style "cyan"
+-widget "*.Ch3*" style "yellow"
+-widget "*.Ch4*" style "orange"
+-widget "*.Ch5*" style "violet"
++widget "*.Ch2*" style "blue"
++widget "*.Ch3*" style "red"
++widget "*.Ch4*" style "red"
++widget "*.Ch5*" style "blue"
+ widget "*.Ch6*" style "blue"
+ widget "*.Ch7*" style "red"
+-widget "*.Ch8*" style "white"
++widget "*.Ch8*" style "red"
+ 
+ widget "*.*_key_label" style "violet"
+ widget "*.*_help_label" style "green"
