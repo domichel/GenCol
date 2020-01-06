@@ -6,6 +6,10 @@ I make my possible to follow the gentoo policies and to keep the ebuilds up to d
 All ebuilds are tested with repoman.
 If you find a non working ebuild, please contribute and open a bug report.
 
+The x11-wm/fvwm3 ebuild does not follow the gentoo policy about installation paths.
+It install most of the files into /usr/local.
+That way, you can have both fvwm 2 and 3 installed into the same system.
+
 Enjoy!
 
 ## Usage
