@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="project">
+		<email>dominique_libre@users.sf.net</email>
+		<name>Gentoo Cool Ebuilds Project</name>
+	</maintainer>
+	<use>
+		<flag name="doc">Enables installation of developer documentation and examples</flag>
+	</use>
+</pkgmetadata>
