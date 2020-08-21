@@ -1,0 +1,141 @@
+#!/bin/bash
+# Create or run the dkbuilder environment
+
+## Virtualenvwrapper variables
+# Name if the virtual environment:
+VEnvName="guitarix"
+# Name of the command to run thaz environment:
+DKBRunCmd="DKB${VEnvName}"
+# location of the virtualenvwrapper:
+VEnvWrapper="/usr/bin/virtualenvwrapper.sh"
+if [ -n "${VENVWRAPPER}" ] ;then
+	VEnvWrapper="${VENVWRAPPER}"
+fi
+if [ -e "${VEnvWrapper}" ] ; then
+	echo "Good, ${VEnvWrapper} exist"
+else
+	echo "Error: the virtualenvwrapper script was not found."
+	echo "Please install it or provide its location to $0:"
+	echo "VENVWRAPPER=\"path/to/virtualenwrpper.sh <cmd>\""
+	exit 1
+fi
+
+## Don't modify past this.
+DKSysDir="/usr/share/guitarix/tools/ampsim/DK"
+#DKSysDir="/home/dom/softs/0_audio/guitarix/trunk/tools/ampsim/DK"
+if [ -n "$2" ] ; then
+	if [ -d "$2" ] ; then
+		DKSysDir="$2"
+		echo "$0 will use ${DKSysDir}"
+	else
+		echo "Error: $2 is not a directory or don't exist."
+		exit 2
+	fi
+else	echo "$0 will use the built-in ${DKSysDir} path"
+fi
+
+DKVEnvDir="${HOME}/.virtualenvs/${VEnvName}"
+DKBrcfile=".dkbuilderrc"
+
+# Functions
+usage() {
+	echo "$0 will create the dkbuilder environment and tell you how to run it."
+	echo "By default, it will asume the dkbuilder is installed word writable into ${DKSysDir}."
+	echo "If you want to use another location, add that location as second argument to the following commands:"
+	echo "Example:"
+	echo "$0 create /home/bibi/guitarix/trunk/tools/ampsim/DK"
+	echo ""
+	echo "$0 usage:"
+	echo ""
+	echo "To create or recreate the dkbuilder environment into ${HOME}/.virtualenvs/${VEnvName}, run:"
+	echo "$0 create"
+	echo "This will delete the existing dkbuilder environment and create a new one with its corresponding init script."
+	echo ""
+	echo "To update the existing dkbuilder environment into ${HOME}/.virtualenvs/${VEnvName}, run:"
+	echo "$0 update"
+	echo "This will update the existing dkbuilder environment and its corresponding init script"
+	echo ""
+	echo "To create an init file to start the dkbuilder environment, run:"
+	echo "$0 makeinit"
+	echo "The script will be in  ~/${DKBrcfile}"
+	echo ""
+	echo "To source the dkbuilder rc file in ~/.bashrc, run:"
+	echo "$0 rcadd"
+	echo "You need to do this only 1 time."
+	echo ""
+	echo "To start the dkbuilder environment, run:"
+	echo "$0 start"
+	echo ""
+	echo "To consult the forum thread, you must set the BROWSER environmental variable, as example:"
+	echo "export BROWSER=\"/usr/bin/vivaldi\""
+	echo "and run:"
+	echo "$0 doc"
+	if [ -e "${BROWSER}" ]
+	then	echo "Just now, \$Browser is ${BROWSER}"
+	else	echo "\$BROWSER is not defined just now! Please set it."
+	fi
+	echo ""
+	echo "Usualy, you need to run \"$0 create\" and, if it is the first time you are using that script, \"$0 rcadd\"."
+	echo ""
+	echo "That's all folk, enjoy!"
+}
+
+deleteenv() {
+	if [ -d "${DKVEnvDir}" ]
+	then	rm -f -R "${DKVEnvDir}"
+	fi
+}
+
+updateenv() {
+	. "${VEnvWrapper}" \
+		&& mkvirtualenv -p python2.7 -r "${DKSysDir}/docker/python_venv" "${VEnvName}"
+}
+
+makeinit() {
+    mkdir -p ~/bin
+    cat << EOF > ~/"${DKBrcfile}"
+# Command to run the "${VEnvName}" dkbuilder environment
+${DKBRunCmd}() {
+export WORKON_HOME="${HOME}/.virtualenvs"
+cd "${DKSysDir}"
+source /usr/bin/virtualenvwrapper.sh
+workon "${VEnvName}"
+}
+EOF
+    . ~/"${DKBrcfile}"
+    echo "Now you can start the ${VEnvName} dkbuilder environment with:"
+    echo "${DKBRunCmd}"
+}
+
+rcadd() {
+    echo '# dkbuilder init function' >> ~/.bashrc
+    echo ". ~/${DKBrcfile}" >> ~/.bashrc
+}
+
+start() {
+    echo "You can now start the ${VEnvName} dkbuilder environment into a new terminal with:"
+    echo "${DKBRunCmd}"
+    echo ""
+    echo "To quit that environment, run:"
+    echo "deactivate"
+}
+
+doc() {
+${BROWSER} '/usr/bin/vivaldi https://linuxmusicians.com/viewtopic.php?f=44&p=102564'
+}
+
+if [ ! -n "$1" ]
+then usage
+else 	case $1 in
+	    create)	deleteenv;
+			updateenv;
+			makeinit;;
+	    update)	updateenv;
+			makeinit;;
+	    makeinit)	makeinit;;
+	    rcadd)	rcadd;;
+	    start)	start;;
+	    doc)	doc;;
+	    *)		usage;;
+	esac
+fi
