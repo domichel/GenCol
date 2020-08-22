@@ -14,11 +14,17 @@ Enjoy!
 
 ## Ebuilds list
 dev-libs/slicot: dependency of media-sound/guitarix[dkbuilder]
+
 media-sound/guitarix: guitarix live ebuild with dkbuilder support
+
 sci-electronics/lepton-eda: gEDA fork
+
 sci-electronics/spice-audio-tools: using wav files with ngspice
+
 sci-electronics/xoscope: xoscope live ebuild
+
 x11-libs/gtkdatabox: runtime dependency for sci-electronics/xoscope
+
 x11-wm/fvwm3: live ebuild for fvwm3
 
 ## Usage
