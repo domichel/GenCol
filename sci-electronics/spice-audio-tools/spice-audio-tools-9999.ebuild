@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
-PYTHON_COMPAT=( python3_{4,5,6} )
+PYTHON_COMPAT=( python3_{6,7,8} )
 inherit git-r3 python-single-r1 python-utils-r1
 
 DESCRIPTION="2 programs for using wav files with ngspice"
