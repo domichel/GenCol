@@ -12,7 +12,7 @@ That way, you can have both fvwm 2 and 3 installed into the same system.
 
 media-sound/guitarix[dkbuilder] will install guitarix as usual.
 It will also install dkbuilder world writable into /usr/share/dkbuilder.
-An improved 'dkbuilder' script is provided. Just run it and follow the help message in order to setup and manage the dkbuilder virtual python environment.
+An improved 'dkbuilder' script is provided. Just run it as user and follow the help message in order to setup and manage the dkbuilder virtual python environment.
 
 Enjoy!
 
