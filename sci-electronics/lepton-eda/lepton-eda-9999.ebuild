@@ -47,8 +47,6 @@ PATCHES=( "${FILESDIR}"/Makefile_contrib_manpages.patch )
 
 src_prepare() {
 	default
-	sed -i -e 's/Engineering;Electronics;/Development;Electronics;Engineering;/' schematic/data/lepton-schematic.desktop.in || die
-	sed -i -e 's/Engineering;Electronics;/Development;Electronics;Engineering;/' attrib/data/lepton-attrib.desktop.in || die
 	eautoreconf
 }
 
