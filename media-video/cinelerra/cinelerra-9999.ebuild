@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=5
-inherit autotools eutils multilib flag-o-matic git-r3
+inherit autotools check-reqs eutils multilib flag-o-matic git-r3
 
 DESCRIPTION="The most advanced non-linear video editor and compositor"
 HOMEPAGE="http://www.cinelerra.org/"
@@ -80,6 +80,11 @@ DEPEND="${RDEPEND}
 	dev-util/cmake"
 
 S="${WORKDIR}/${P}/${PN}-5.1"
+
+pkg_pretend() {
+	CHECKREQS_DISK_BUILD="3G"
+	check-reqs_pkg_pretend
+}
 
 src_prepare() {
 	cp "${FILESDIR}/mjpegtools-2.1.0.patch3" "${S}/thirdparty/src"
