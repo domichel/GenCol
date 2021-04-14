@@ -3,6 +3,7 @@
 
 EAPI=5
 inherit autotools check-reqs eutils multilib flag-o-matic git-r3
+CHECKREQS_DISK_BUILD="3G"
 
 DESCRIPTION="The most advanced non-linear video editor and compositor"
 HOMEPAGE="http://www.cinelerra.org/"
@@ -82,8 +83,11 @@ DEPEND="${RDEPEND}
 S="${WORKDIR}/${P}/${PN}-5.1"
 
 pkg_pretend() {
-	CHECKREQS_DISK_BUILD="3G"
 	check-reqs_pkg_pretend
+}
+
+pkg_setup() {
+	check-reqs_pkg_setup
 }
 
 src_prepare() {
