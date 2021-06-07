@@ -1,8 +1,8 @@
 # Copyright 1999-2019 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
-PYTHON_COMPAT=( python3_{6,7,8} )
+EAPI=7
+PYTHON_COMPAT=( python3_{7,8,9} )
 inherit autotools eutils xdg-utils gnome2-utils git-r3 python-single-r1
 
 DESCRIPTION="GPL Electronic Design Automation (gEDA):gaf fork"
