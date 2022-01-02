@@ -1,8 +1,8 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2021 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=5
-inherit autotools check-reqs eutils multilib flag-o-matic git-r3
+EAPI=7
+inherit autotools check-reqs multilib flag-o-matic git-r3
 CHECKREQS_DISK_BUILD="3G"
 
 DESCRIPTION="The most advanced non-linear video editor and compositor"
@@ -91,6 +91,7 @@ pkg_setup() {
 }
 
 src_prepare() {
+	default
 	cp "${FILESDIR}/mjpegtools-2.1.0.patch3" "${S}/thirdparty/src"
 	eautoreconf
 }
@@ -112,5 +113,11 @@ src_configure() {
 
 src_install() {
 	make DESTDIR="${D}" install || die
-	prune_libtool_files --all
+}
+
+pkg_postinst() {
+	elog "When using another browser than firefox, you should set"
+	elog "the CIN_BROWSER variable in order to get cin help into it."
+	elog "As example, add the following into ~/.bashrc:"
+	elog 'export CIN_BROWSER="/usr/bin/vivaldi"'
 }
