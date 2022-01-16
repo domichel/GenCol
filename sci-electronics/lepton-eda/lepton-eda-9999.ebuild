@@ -16,10 +16,12 @@ IUSE="debug doc nls stroke contrib"
 REQUIRED_USE="${PYTHON_REQUIRED_USE}
 	contrib? ( $(python_gen_useflags 'python2*') )"
 
+# Use gtk2 which need gtk-extra as gtksheet needed by the gtk3 version is not in portage.
 CDEPEND="contrib? ( ${PYTHON_DEPS}
 		!!sci-electronics/geda )
 	dev-libs/glib:2
 	x11-libs/gtk+:2
+	>=x11-libs/gtk+extra-3.0.0
 	x11-libs/pango
 	>=x11-libs/cairo-1.2.0
 	x11-libs/gdk-pixbuf
