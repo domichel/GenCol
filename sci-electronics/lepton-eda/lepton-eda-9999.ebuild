@@ -3,7 +3,7 @@
 
 EAPI=7
 PYTHON_COMPAT=( python3_{7,8,9} )
-inherit autotools eutils xdg-utils gnome2-utils git-r3 python-single-r1
+inherit autotools eutils xdg-utils git-r3 python-single-r1
 
 DESCRIPTION="GPL Electronic Design Automation (gEDA):gaf fork"
 HOMEPAGE="https://github.com/lepton-eda/lepton-eda"
@@ -106,18 +106,14 @@ src_install() {
 	fi
 }
 
-pkg_preinst() {
-	gnome2_icon_savelist
-}
-
 pkg_postinst() {
 	xdg_desktop_database_update
 	xdg_mimeinfo_database_update
-	gnome2_icon_cache_update
+	xdg_icon_cache_update
 }
 
 pkg_postrm() {
 	xdg_desktop_database_update
 	xdg_mimeinfo_database_update
-	gnome2_icon_cache_update
+	xdg_icon_cache_update
 }
