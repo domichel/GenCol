@@ -28,7 +28,6 @@ RDEPEND="festival? ( app-accessibility/festival )
 	media-libs/fontconfig
 	>=media-libs/freetype-2
 	media-libs/giflib:=
-	media-libs/ilmbase:=
 	media-libs/jbigkit:=
 	media-libs/ladspa-sdk:=
 	media-libs/libdv:=
@@ -40,7 +39,7 @@ RDEPEND="festival? ( app-accessibility/festival )
 	media-libs/libsndfile:0=
 	media-libs/libtheora:=
 	media-libs/libvorbis:=
-	media-libs/openexr:=
+	|| ( media-libs/openexr:= media-libs/ilmbase:= )
 	media-libs/openjpeg:=
 	media-libs/sdl-gfx:=
 	media-libs/tiff:=
@@ -92,7 +91,6 @@ pkg_setup() {
 
 src_prepare() {
 	default
-	cp "${FILESDIR}/mjpegtools-2.1.0.patch3" "${S}/thirdparty/src"
 	eautoreconf
 }
 
