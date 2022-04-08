@@ -19,11 +19,15 @@ Enjoy!
 ## Ebuilds list
 dev-libs/slicot: dependency of media-sound/guitarix[dkbuilder]
 
-media-sound/guitarix: guitarix live ebuild with dkbuilder support
+media-sound/guitarix: guitarix live ebuild with dkbuilder support. See the linux musician forum for explanation about it.
+
+media-video/cinelerra: cinelerra-gg live ebuild which follow upstream linking recommendation.
+
+media-video/mplayer: mplayer live ebuild which follow upstream recommendation to statically link mplayer against uptsream ffmpeg.
 
 sci-electronics/lepton-eda: gEDA fork
 
-sci-electronics/spice-audio-tools: using wav files with ngspice
+sci-electronics/spice-audio-tools: using wav files with ngspice.
 
 sci-electronics/xoscope: xoscope live ebuild
 
