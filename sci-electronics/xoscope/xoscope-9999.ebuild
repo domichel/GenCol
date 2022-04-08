@@ -1,4 +1,4 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2022 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -21,8 +21,7 @@ DEPEND="${RDEPEND}
 	virtual/pkgconfig"
 
 PATCHES=( "${FILESDIR}"/${P}-man_no_-Tutf8.patch
-	"${FILESDIR}"/${PN}-trace_colors.patch
-	"${FILESDIR}"/${P}-sampling_rate.patch )
+	"${FILESDIR}"/${PN}-trace_colors.patch )
 
 src_prepare() {
 	default
