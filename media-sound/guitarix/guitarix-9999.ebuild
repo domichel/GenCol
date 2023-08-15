@@ -1,58 +1,56 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2023 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
-PYTHON_COMPAT=( python3_{7,8,9} )
+PYTHON_COMPAT=( python3_{9..11} )
 PYTHON_REQ_USE="threads(+)"
 
-inherit python-any-r1 waf-utils
+EGIT_OVERRIDE_REPO_ENYOJS_BOOTPLATE="https://github.com/enyojs/bootplate.git"
+EGIT_OVERRIDE_BRANCH_ENYOJS="master"
 
-DESCRIPTION="A simple Linux Guitar Amplifier for jack with one input and two outputs"
-HOMEPAGE="http://guitarix.sourceforge.net/"
-if [[ ${PV} == *9999 ]]; then
-	inherit git-r3
-#	EVCS_OFFLINE=1
-	EGIT_REPO_URI="https://git.code.sf.net/p/guitarix/git"
-	EGIT_SUBMODULES=()
-	KEYWORDS=""
-	S="${S}/trunk"
-else
-	SRC_URI="mirror://sourceforge/guitarix/guitarix/${PN}2-${PV}.tar.xz"
-	KEYWORDS="~amd64"
-	S="${WORKDIR}/guitarix-${PV}"
-fi
+inherit python-any-r1 waf-utils xdg git-r3
+
+DESCRIPTION="Virtual Guitar Amplifier for Linux"
+HOMEPAGE="https://guitarix.org/"
+EGIT_REPO_URI="https://github.com/brummer10/${PN}.git"
+KEYWORDS=""
+S="${WORKDIR}/${P}/trunk"
+
 LICENSE="GPL-2"
 SLOT="0"
 
 # Enabling LADSPA is discouraged by the developer
 # See https://linuxmusicians.com/viewtopic.php?p=88153#p88153
 # For dkbuilder see https://linuxmusicians.com/viewtopic.php?f=44&p=102564
-IUSE="+standalone -ladspa +lv2 avahi bluetooth nls dkbuilder"
+IUSE="bluetooth debug +lv2 nls nsm +standalone -ladspa zeroconf dkbuilder"
 # When enabling LADSPA, standalone is required because the LADSPA build
 # dependencies aren't correctly defined
 REQUIRED_USE="|| ( lv2 standalone )"
 #	ladspa? ( standalone )"
 
-RDEPEND="media-libs/libsndfile
-	x11-libs/gtk+:2
-	virtual/jack
-	dev-cpp/gtkmm:2.4
-	dev-libs/boost
+DEPEND="
 	dev-cpp/eigen:3
-	sci-libs/fftw:3.0
-	>=media-libs/zita-convolver-3
-	media-libs/zita-resampler
+	dev-cpp/glibmm:2
+	dev-cpp/gtkmm:3.0
+	dev-libs/glib:2
+	media-libs/libsndfile
+	>=media-libs/zita-convolver-4
+	>=media-libs/zita-resampler-1
+	net-misc/curl
+	sci-libs/fftw:3.0=
+	x11-libs/gtk+:3
+	lv2? ( media-libs/lv2 )
 	standalone? (
-		dev-lang/sassc
-		media-libs/lilv
+		dev-libs/boost:=
 		media-libs/liblrdf
-		media-fonts/roboto
+		media-libs/lilv
+		virtual/jack
+		bluetooth? ( net-wireless/bluez )
+		nsm? ( media-libs/liblo )
+		zeroconf? ( net-dns/avahi )
 	)
 	ladspa? ( media-libs/ladspa-sdk )
-	lv2? ( media-libs/lv2 )
-	avahi? ( net-dns/avahi )
-	bluetooth? ( net-wireless/bluez )
 	dkbuilder? (
 		sci-electronics/geda
 		<=dev-lang/faust-0.9.90
@@ -63,11 +61,23 @@ RDEPEND="media-libs/libsndfile
 		sci-mathematics/maxima
 		dev-python/virtualenv
 		dev-python/virtualenvwrapper
-	)"
-DEPEND="${RDEPEND}
+	)
+"
+RDEPEND="
+	${RDEPEND}
+	standalone? ( media-fonts/roboto )
+"
+BDEPEND="
 	${PYTHON_DEPS}
 	virtual/pkgconfig
-	nls? ( dev-util/intltool )"
+	standalone? (
+		dev-lang/sassc
+		nls? (
+			dev-util/intltool
+			sys-devel/gettext
+		)
+	)
+"
 
 DOCS=( changelog README )
 PATCHES=( "${FILESDIR}/${PN}.nostrip.patch" )
@@ -83,14 +93,16 @@ src_configure() {
 		--no-faust
 		--no-ldconfig
 		--shared-lib
-		$(usex standalone "" "--no-standalone")
-		$(usex ladspa "--ladspa --new-ladspa" "")
-		$(usex lv2 "" "--no-lv2")
-		$(usex avahi "" "--no-avahi")
+		$(use_enable nls)
 		$(usex bluetooth "" "--no-bluez")
-		$(usex nls "--enable-nls" "--disable-nls")
+		$(usex debug "--debug" "")
+		$(usex lv2 "--lv2dir=${EPREFIX}/usr/$(get_libdir)/lv2" "--no-lv2 --no-lv2-gui")
+		$(usex nsm "" "--no-nsm")
+		$(usex standalone "" "--no-standalone")
+		$(usex ladspa "--ladspa" "")
+		$(usex zeroconf "" "--no-avahi")
 	)
-	waf-utils_src_configure ${mywafconfargs[@]}
+	waf-utils_src_configure "${mywafconfargs[@]}"
 }
 
 src_install() {
