@@ -67,7 +67,7 @@ RDEPEND="festival? ( app-accessibility/festival )
 		virtual/glu
 		virtual/opengl
 		)
-	vaapi? ( x11-libs/libva:= )
+	vaapi? ( media-libs/libva:= )
 	vdpau? ( x11-libs/libvdpau:= )"
 DEPEND="${RDEPEND}
 	app-arch/bzip2
