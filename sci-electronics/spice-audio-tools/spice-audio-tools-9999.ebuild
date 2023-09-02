@@ -23,7 +23,7 @@ RESTRICT="mirror"
 DOCS="README examples"
 
 src_install() {
-	python_doscript spicetowav.py wavtospice.py
+	python_doscript spiceaudiotools/spicetowav.py spiceaudiotools/wavtospice.py
 	dosym "${EPREFIX}"/usr/lib/python-exec/"${EPYTHON}"/spicetowav.py "${EPREFIX}"/usr/bin/spicetowav
 	dosym "${EPREFIX}"/usr/lib/python-exec/"${EPYTHON}"/wavtospice.py "${EPREFIX}"/usr/bin/wavtospice
 	einstalldocs
