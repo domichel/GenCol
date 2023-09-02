@@ -1,12 +1,12 @@
 # Copyright 1999-2022 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=8
 
 EGIT_REPO_URI="https://github.com/FFmpeg/FFmpeg"
 ESVN_REPO_URI="svn://svn.mplayerhq.hu/mplayer/trunk"
 
-inherit toolchain-funcs eutils flag-o-matic subversion git-r3 xdg-utils
+inherit toolchain-funcs flag-o-matic subversion git-r3 xdg-utils
 
 IUSE="cpu_flags_x86_3dnow cpu_flags_x86_3dnowext +a52 aalib +alsa altivec aqua bidi bindist bl bluray
 bs2b cddb +cdio cdparanoia cpudetection debug dga
