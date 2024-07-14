@@ -1,24 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-  <maintainer type="person">
-	  <email>i92guboj@gentoo.org</email>
-	  <description>Proxied committer, assign bugs</description>
-  </maintainer>
-  <maintainer type="person">
-	  <email>darkside@gentoo.org</email>
-	  <description>Proxy committer, CC bugs</description>
-  </maintainer>
-  <longdescription lang="en">
-		fvwm is an ICCCM-compliant X window manager providing a 3D look for
-		window decorations, multiple discontiguous virtual desktops, a high
-		degree of configurability, and an external module interface for
-		implementing functional extensions.
+	<longdescription lang="en">
+		fvwm3 is a multiple large virtual desktop window manager.
+		The successor to fvwm-2.6, Fvwm3 is intended to be extremely customizable and extendible while consuming a relatively small amount of resources.
 	</longdescription>
-  <use>
-    <flag name="lock">Enable screen locking</flag>
-    <flag name="netpbm">Enable NetPBM support (used by FvwmScript-ScreenDump)</flag>
-    <flag name="rplay">Enable rplay support</flag>
-    <flag name="stroke">Mouse Gesture support</flag>
-  </use>
+	<maintainer type="person" proxied="yes">
+		<email>Matt.Jolly@footclan.ninja</email>
+		<name>Matthew Jolly</name>
+	</maintainer>
+	<maintainer type="project" proxied="proxy">
+		<email>proxy-maint@gentoo.org</email>
+		<name>Proxy Maintainers</name>
+	</maintainer>
+	<use>
+		<flag name="go">Enable building <pkg>dev-lang/go</pkg> code (FvwmPrompt)</flag>
+		<flag name="lock">Enable screen locking</flag>
+		<flag name="netpbm">Enable NetPBM support (used by FvwmScript-ScreenDump)</flag>
+		<flag name="rplay">Enable rplay support</flag>
+		<flag name="stroke">Mouse Gesture support</flag>
+	</use>
+	<upstream>
+		<bugs-to>https://github.com/fvwmorg/fvwm3/issues</bugs-to>
+		<changelog>https://raw.githubusercontent.com/fvwmorg/fvwm3/master/CHANGELOG.md</changelog>
+	</upstream>
 </pkgmetadata>
