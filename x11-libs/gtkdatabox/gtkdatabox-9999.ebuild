@@ -1,9 +1,9 @@
-# Copyright 1999-2019 Gentoo Foundation
+# Copyright 1999-2024 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=8
 
-inherit autotools eutils git-r3
+inherit autotools git-r3
 
 DESCRIPTION="Gtk+ Widgets for live display of big amounts of fluctuating data xoscope version"
 HOMEPAGE="https://sourceforge.net/projects/xoscope/"
