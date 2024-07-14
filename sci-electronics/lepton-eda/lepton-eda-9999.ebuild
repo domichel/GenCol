@@ -1,9 +1,9 @@
-# Copyright 1999-2019 Gentoo Foundation
+# Copyright 1999-2024 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
-PYTHON_COMPAT=( python3_{9,10,11} )
-inherit autotools eutils xdg-utils git-r3 python-single-r1
+EAPI=8
+PYTHON_COMPAT=( python3_{9,10,11,12} )
+inherit autotools xdg-utils git-r3 python-single-r1
 
 DESCRIPTION="GPL Electronic Design Automation (gEDA):gaf fork"
 HOMEPAGE="https://github.com/lepton-eda/lepton-eda"
@@ -13,19 +13,18 @@ LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS=""
 IUSE="debug doc nls stroke contrib"
-REQUIRED_USE="${PYTHON_REQUIRED_USE}
-	contrib? ( $(python_gen_useflags 'python2*') )"
+REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 
 # Use gtk2 which need gtk-extra as gtksheet needed by the gtk3 version is not in portage.
 CDEPEND="contrib? ( ${PYTHON_DEPS}
-		!!sci-electronics/geda )
+	!!sci-electronics/geda )
 	dev-libs/glib:2
 	x11-libs/gtk+:2
 	>=x11-libs/gtk+extra-3.0.0
 	x11-libs/pango
 	>=x11-libs/cairo-1.2.0
 	x11-libs/gdk-pixbuf
-	>=dev-scheme/guile-2.0.0
+	>=dev-scheme/guile-2.2.0
 	nls? ( virtual/libintl )
 	stroke? ( >=dev-libs/libstroke-0.5.1 )"
 
