@@ -26,14 +26,6 @@ RDEPEND="${DEPEND}"
 
 S="${WORKDIR}/SLICOT-SLICOT-Reference-a037f7e"
 
-src_unpack() {
-#	default
-	cd "${WORKDIR}"
-	unpack "${MY_P}.orig.tar.gz"
-	cd "${S}"
-	unpack "${MY_P}-1.debian.tar.xz"
-}
-
 src_compile() {
 	SO=0
 	emake -f makefile_Unix lib FORTRAN="${FC}" OPTS="${CFLAGS} $(fortran_int64_abi_fflags) -fPIC" ARCH=$(tc-getAR) \
