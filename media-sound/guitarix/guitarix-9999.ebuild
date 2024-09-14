@@ -20,20 +20,15 @@ S="${WORKDIR}/${P}/trunk"
 LICENSE="GPL-2"
 SLOT="0"
 
-# Enabling LADSPA is discouraged by the developer
-# See https://linuxmusicians.com/viewtopic.php?p=88153#p88153
-# For dkbuilder see https://linuxmusicians.com/viewtopic.php?f=44&p=102564
-IUSE="bluetooth debug +lv2 nls nsm +standalone -ladspa zeroconf dkbuilder"
-# When enabling LADSPA, standalone is required because the LADSPA build
-# dependencies aren't correctly defined
+IUSE="bluetooth debug +lv2 nls nsm +standalone jacksession zeroconf dkbuilder"
 REQUIRED_USE="|| ( lv2 standalone )"
-#	ladspa? ( standalone )"
 
 DEPEND="
 	dev-cpp/eigen:3
 	dev-cpp/glibmm:2
 	dev-cpp/gtkmm:3.0
 	dev-libs/glib:2
+	media-libs/ladspa-sdk
 	media-libs/libsndfile
 	>=media-libs/zita-convolver-4
 	>=media-libs/zita-resampler-1
@@ -50,7 +45,7 @@ DEPEND="
 		nsm? ( media-libs/liblo )
 		zeroconf? ( net-dns/avahi )
 	)
-	ladspa? ( media-libs/ladspa-sdk )
+	jacksession? ( virtual/jack )
 	dkbuilder? (
 		sci-electronics/geda
 		<=dev-lang/faust-0.9.90
@@ -83,10 +78,10 @@ DOCS=( changelog README )
 PATCHES=( "${FILESDIR}/${PN}.nostrip.patch" )
 
 src_configure() {
-#		--ldflags="${LDFLAGS}"
 	local mywafconfargs=(
 		--cxxflags-debug=""
 		--cxxflags-release="-DNDEBUG"
+		--cxxflags="${CXXFLAGS}"
 		--enable-lfs
 		--lib-dev
 		--no-desktop-update
@@ -99,7 +94,7 @@ src_configure() {
 		$(usex lv2 "--lv2dir=${EPREFIX}/usr/$(get_libdir)/lv2" "--no-lv2 --no-lv2-gui")
 		$(usex nsm "" "--no-nsm")
 		$(usex standalone "" "--no-standalone")
-		$(usex ladspa "--ladspa" "")
+		$(usex jacksession "--jack-session" "")
 		$(usex zeroconf "" "--no-avahi")
 	)
 	waf-utils_src_configure "${mywafconfargs[@]}"
@@ -120,7 +115,7 @@ src_install() {
 		cp -r "${S}"/tools/* "${ED}/usr/share/guitarix/tools"
 		chmod -R g+w,o+w "${ED}/usr/share/guitarix/tools"
 
-		elog "The dkbuilder is installed world writable into ${ED}/usr/share/guitarix/tools"-
+		elog "The dkbuilder is installed world writable into /usr/share/guitarix/tools"-
 		elog "This doesn't follow hentoo policy, please, don't report it to gentoo,"
 		elog "they habe nothing to do with that and this is needed for the dkbuilder to work for the users."
 		elog "If you don't like it, just don't use that ebuild to install the dkbuilder."

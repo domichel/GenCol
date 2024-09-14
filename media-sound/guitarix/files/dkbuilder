@@ -20,6 +20,9 @@ else
 	exit 1
 fi
 
+# doc browser
+DocB=${BROWSER-/usr/bin/vivaldi}
+
 ## Don't modify past this.
 DKSysDir="/usr/share/guitarix/tools/ampsim/DK"
 #DKSysDir="/home/dom/softs/0_audio/guitarix/trunk/tools/ampsim/DK"
@@ -121,7 +124,7 @@ start() {
 }
 
 doc() {
-${BROWSER} '/usr/bin/vivaldi https://linuxmusicians.com/viewtopic.php?f=44&p=102564'
+${DocB} https://linuxmusicians.com/search.php?keywords=dkbuilder
 }
 
 if [ ! -n "$1" ]
