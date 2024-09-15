@@ -8,12 +8,13 @@ PYTHON_REQ_USE="threads(+)"
 
 EGIT_OVERRIDE_REPO_ENYOJS_BOOTPLATE="https://github.com/enyojs/bootplate.git"
 EGIT_OVERRIDE_BRANCH_ENYOJS="master"
+EGIT_OVERRIDE_BRANCH_DOMICHEL_GUITARIX="dkbuilder"
 
 inherit python-any-r1 waf-utils xdg git-r3
 
 DESCRIPTION="Virtual Guitar Amplifier for Linux"
 HOMEPAGE="https://guitarix.org/"
-EGIT_REPO_URI="https://github.com/brummer10/${PN}.git"
+EGIT_REPO_URI="https://github.com/domichel/${PN}.git"
 KEYWORDS=""
 S="${WORKDIR}/${P}/trunk"
 
@@ -46,21 +47,24 @@ DEPEND="
 		zeroconf? ( net-dns/avahi )
 	)
 	jacksession? ( virtual/jack )
-	dkbuilder? (
-		sci-electronics/geda
-		<=dev-lang/faust-0.9.90
-		dev-cpp/eigen
-		dev-libs/slicot
-		sci-libs/cminpack
-		sci-libs/sundials
-		sci-mathematics/maxima
-		dev-python/virtualenv
-		dev-python/virtualenvwrapper
-	)
 "
 RDEPEND="
-	${RDEPEND}
+	${DEPEND}
 	standalone? ( media-fonts/roboto )
+	dkbuilder? (
+		dev-cpp/eigen
+		<=dev-lang/faust-0.9.90
+		dev-lang/python:3.9
+		dev-libs/slicot
+		dev-python/virtualenv
+		dev-python/virtualenvwrapper
+		sci-electronics/geda
+		sci-libs/cminpack
+		sci-libs/lapack[deprecated]
+		sci-libs/sundials
+		sci-mathematics/maxima
+		virtual/blas
+		)
 "
 BDEPEND="
 	${PYTHON_DEPS}
@@ -119,6 +123,9 @@ src_install() {
 		elog "This doesn't follow hentoo policy, please, don't report it to gentoo,"
 		elog "they habe nothing to do with that and this is needed for the dkbuilder to work for the users."
 		elog "If you don't like it, just don't use that ebuild to install the dkbuilder."
+		elog ""
+		elog "dkbuilder is broken with python3, so use docker as explained into"
+		elog "/usr/share/guitarix/tools/ampsim/DK/README"
 		elog ""
 		elog "You need to setup your environment to use dkbuilder."
 		elog "For that follow the advice in:"

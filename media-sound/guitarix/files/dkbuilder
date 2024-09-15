@@ -90,8 +90,11 @@ deleteenv() {
 }
 
 updateenv() {
+# It doesn't work with python3, so try to start with an empty env in order to update it to python3, WIP
+# Use python3.9 as it is the last version where 2to3 is not deprecated.
 	. "${VEnvWrapper}" \
-		&& mkvirtualenv -p python2.7 -r "${DKSysDir}/docker/python_venv" "${VEnvName}"
+		&& mkvirtualenv -p python3.9 -r "${DKSysDir}/docker/python_venv" "${VEnvName}"
+#		&& mkvirtualenv -p python2.7 -r "${DKSysDir}/docker/python_venv" "${VEnvName}"
 }
 
 makeinit() {
