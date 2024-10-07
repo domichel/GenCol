@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer>
+		<email>proxy-maint@gentoo.org</email>
+		<name>Proxy Maintainers</name>
+	</maintainer>
+	<longdescription lang="en">
+		x11docker run X11 applications with docker and podman containers.
+		It also have experimental support for nerdctl containers.
+	</longdescription>
+	<upstream>
+		<remote-id type="github">mviereck/x11docker</remote-id>
+		<bugs-to>https://github.com/mviereck/x11docker/issues</bugs-to>
+		<doc>https://github.com/mviereck/x11docker/blob/main/README.md</doc>
+	<use>
+		<flag name="docker">Enables docker backend</flag>
+		<flag name="catatonit">Enables container init via catatonit</flag>
+		<flag name="gpu">Enables graphics acceleration runtime dependencies</flag>
+		<flag name="nerdctl">Enables nerdctl backend</flag>
+		<flag name="podman">Enables podman backend</flag>
+	</use>
+</pkgmetadata>
