@@ -19,7 +19,7 @@ Enjoy!
 ## Ebuilds list
 dev-libs/slicot: dependency of media-sound/guitarix[dkbuilder]
 
-media-sound/guitarix: guitarix live ebuild with dkbuilder support. See the linux musician forum for explanation about it.
+media-sound/guitarix: use the main tree ebuild. For the dkbuilder, use the proaudio-gentoo overlay and see the linux musician forum for explanation about it.
 
 media-video/cinelerra: cinelerra-gg live ebuild which follow upstream linking recommendation.
 
