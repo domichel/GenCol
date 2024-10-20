@@ -1,0 +1,11 @@
+diff '--color=auto' -ru sequencer64-9999.orig/libseq64/include/daemonize.hpp sequencer64-9999/libseq64/include/daemonize.hpp
+--- sequencer64-9999.orig/libseq64/include/daemonize.hpp	2024-10-20 22:03:09.869613528 +0200
++++ sequencer64-9999/libseq64/include/daemonize.hpp	2024-10-20 22:04:43.788617490 +0200
+@@ -32,6 +32,7 @@
+ 
+ #include "platform_macros.h"            /* detecting 32-bit builds      */
+ 
++#include <cstdint>
+ #include <string>
+ 
+ /*
