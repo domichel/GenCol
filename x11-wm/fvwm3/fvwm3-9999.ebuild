@@ -3,7 +3,7 @@
 
 EAPI=8
 
-PYTHON_COMPAT=( python3_{8..12} )
+PYTHON_COMPAT=( python3_{8..13} )
 GO_OPTIONAL=1
 inherit autotools desktop flag-o-matic go-module python-single-r1
 
