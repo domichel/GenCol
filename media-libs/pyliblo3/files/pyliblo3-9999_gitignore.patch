@@ -1,0 +1,11 @@
+diff '--color=auto' -ur pyliblo-0.10.0.orig/.gitignore pyliblo-0.10.0/.gitignore
+--- pyliblo-0.10.0.orig/.gitignore	2024-10-21 01:05:20.290156682 +0200
++++ pyliblo-0.10.0/.gitignore	2024-10-21 01:06:22.331125195 +0200
+@@ -13,6 +13,6 @@
+ .deps
+ .idea
+ .mypy*
+-src/liblo.c
++pyliblo3/*.c
+ wheelhouse/
+ *.kate*
