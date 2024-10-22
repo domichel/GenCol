@@ -17,13 +17,9 @@ An improved 'dkbuilder' script is provided. Just run it as user and follow the h
 Enjoy!
 
 ## Ebuilds list
-dev-libs/slicot: dependency of media-sound/guitarix[dkbuilder]
-
-media-sound/guitarix: use the main tree ebuild. For the dkbuilder, use the proaudio-gentoo overlay and see the linux musician forum for explanation about it.
+media-sound/guitarix: use the main tree ebuild. For the dev-util/dkbuilder, use the proaudio-gentoo overlay and see the linux musician forum for explanation about it. https://github.com/domichel/proaudio-gentoo
 
 media-video/cinelerra: cinelerra-gg live ebuild which follow upstream linking recommendation.
-
-media-video/mplayer: mplayer live ebuild which follow upstream recommendation to statically link mplayer against uptsream ffmpeg.
 
 sci-electronics/lepton-eda: gEDA fork
 
@@ -33,7 +29,7 @@ sci-electronics/xoscope: xoscope live ebuild
 
 x11-libs/gtkdatabox: runtime dependency for sci-electronics/xoscope
 
-x11-wm/fvwm3: live ebuild for fvwm3
+And a few other ones as temporary fixes for software managed outside of Gencool and proaudio-gentoo.
 
 ## Usage
 I suppose you want to install the overlay in /var/lib/layman, and get it managed by layman
